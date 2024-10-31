@@ -160,7 +160,13 @@ with col1:
             # テンプレート番号を空白に初期化
             #if st.session_state.index >= len(image_files):
             #    st.session_state.index = 0
-            if len(image_files) == 0:
+            if len(image_files) == 1:
+                with open(annotations_file, "rb") as file:
+                    file_data = file.read()
+                b64 = base64.b64encode(file_data).decode()
+    href = f'<a href="data:application/json;base64,{b64}" download="aaa.json">Click here to download aaa.json</a>'
+    st.markdown(href, unsafe_allow_html=True)
+                
                 st.success("すべての画像にアノテーションが完了しました")
             st.session_state['annotation_text'] = ""
             
