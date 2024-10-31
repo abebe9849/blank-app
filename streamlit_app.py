@@ -7,7 +7,7 @@ import pandas as pd
 from PIL import Image
 
 
-img_path = "/workspaces/blank-app/data/images"
+img_path = "./data/images"
 image_files = glob.glob(f"{img_path}/*")  # 画像ファイルのリスト
 
 # 現在の画像インデックス
@@ -15,7 +15,7 @@ if 'index' not in st.session_state:
     st.session_state.index = 0
 
 # アノテーションデータのロードまたは初期化
-annotations_file = "/workspaces/blank-app/data/annotations.json"
+annotations_file = "./data/annotations.json"
 if os.path.exists(annotations_file):
     with open(annotations_file, 'r', encoding='utf-8') as f:
         annotations = json.load(f)
