@@ -59,12 +59,16 @@ templates = {
         "7": "基底膜の肥厚を認めます"
     },
     "d": {
-        "0": "光学顕微鏡では特記すべき所見はありません",
+        "0": "",
         "1": "全節性硬化が見られます",
-        "2": "半分以上が硬化しています",
+        "2": "結節性硬化が疑われます",
         "3": "分節性の硬化が見られます",
-        "4": "所見d4のテンプレート文章",
-        "5": "所見d5のテンプレート文章"
+        "4": "結節性硬化が疑われます",
+    }
+    "e": {
+        "0": "光学顕微鏡では特記すべき所見はありません",
+        "1": "糸球体周囲の血管新生が見られます",
+        "2": "細動脈の硝子様変化が見られます",
     }
 }
 
@@ -88,7 +92,7 @@ st.set_page_config(layout="wide")
 #st.write(f"未アノテーションの画像数: {len(image_files)}")
 
 
-k = ["管内/管外増殖","メサンギウム領域","基底膜","硬化"]
+k = ["管内/管外増殖","メサンギウム領域","基底膜","硬化","周囲血管"]
 # サイドバーのテンプレートの表示
 st.sidebar.write("テンプレートの対応表")
 for i,key in enumerate(templates):
@@ -101,7 +105,9 @@ def change_value():
     st.session_state["template_a"] = ""
     st.session_state["template_b"] = ""
     st.session_state["template_c"] = ""
-    st.session_state["template_d"] = "" # https://zenn.dev/alivelimb/books/python-web-frontend/viewer/about-streamlit
+    st.session_state["template_d"] = "" 
+    st.session_state["template_e"] = "" 
+    # https://zenn.dev/alivelimb/books/python-web-frontend/viewer/about-streamlit
 
 # レイアウト設定
 col1, col2 = st.columns([1, 2])
@@ -126,6 +132,7 @@ with col1:
     template_b = zenkaku_to_hankaku(st.text_input("メサンギウム領域", key="template_b"))
     template_c = zenkaku_to_hankaku(st.text_input("基底膜", key="template_c"))
     template_d = zenkaku_to_hankaku(st.text_input("硬化", key="template_d"))
+    template_e = zenkaku_to_hankaku(st.text_input("周囲血管", key="template_e"))
 
     # 自由記述欄の初期値設定
     if 'annotation_text' not in st.session_state:
@@ -133,15 +140,21 @@ with col1:
 
     # テンプレート文章の取得
     if st.button("テンプレートを適用"):
-        if template_a in templates["a"]:
-            st.session_state['annotation_text'] += templates["a"][template_a] + "\n"
-        if template_b in templates["b"]:
-            st.session_state['annotation_text'] += templates["b"][template_b] + "\n"
-        if template_c in templates["c"]:
-            st.session_state['annotation_text'] += templates["c"][template_c] + "\n"
-        if template_d in templates["d"]:
-            st.session_state['annotation_text'] += templates["d"][template_d] + "\n"
-
+        for t in template_a:
+            if t in templates["a"]:
+                st.session_state['annotation_text'] += templates["a"][t] + "\n"
+        for t in template_b:
+            if t in templates["b"]:
+                st.session_state['annotation_text'] += templates["b"][t] + "\n"
+        for t in template_c:
+            if t in templates["c"]:
+                st.session_state['annotation_text'] += templates["c"][t] + "\n"
+        for t in template_d:
+            if t in templates["d"]:
+                st.session_state['annotation_text'] += templates["d"][t] + "\n"
+        for t in template_e:
+            if t in templates["e"]:
+                st.session_state['annotation_text'] += templates["e"][t] + "\n"
         print(st.session_state['annotation_text'])
     
 
