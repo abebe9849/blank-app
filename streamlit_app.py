@@ -180,12 +180,19 @@ with col1:
             #if st.session_state.index >= len(image_files):
             #    st.session_state.index = 0
             if len(image_files) == 1:
+                st.session_state.index = 0
+                # アノテーションJSONファイルをダウンロード
+                with open(annotations_file, 'r', encoding='utf-8') as f:
+                    annotations_data = f.read()
+                st.download_button(
+                    label="アノテーションファイルをダウンロード",
+                    data=annotations_data,
+                    file_name="annotations.json",
+                    mime="application/json"
+                )
+
+                
                 st.success("すべての画像にアノテーションが完了しました")
-                with open(annotations_file, "rb") as file:
-                    file_data = file.read()
-                b64 = base64.b64encode(file_data).decode()
-                href = f'<a href="data:application/json;base64,{b64}" download="aaa.json">Click here to download aaa.json</a>'
-                st.markdown(href, unsafe_allow_html=True)
                 
                 
             st.session_state['annotation_text'] = ""
@@ -194,7 +201,9 @@ with col1:
             
 
 
-            st.rerun()
+            if len(image_files) != 1:
+
+                st.rerun()
             
             
             
