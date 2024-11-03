@@ -235,14 +235,7 @@ with col_1:
     with col_button1:
 
         
-        with open(annotations_file, 'r', encoding='utf-8') as f:
-            annotations_data_ = f.read()
-        st.download_button(
-            label="アノテーションファイルをダウンロード",
-            data=annotations_data_,
-            file_name="annotations.json",
-            mime="application/json"
-        )  
+
         if st.button("完了 次の画像へ"):           
             annotations[current_image_file] = annotation_text
             with open(annotations_file, 'w', encoding='utf-8') as f:
@@ -270,6 +263,14 @@ with col_1:
             if len(image_files) != 1:
 
                 st.rerun()
+        with open(annotations_file, 'r', encoding='utf-8') as f:
+            annotations_data_ = f.read()
+        st.download_button(
+            label="アノテーションファイルをダウンロード",
+            data=annotations_data_,
+            file_name="annotations.json",
+            mime="application/json"
+        )  
             
             
             
