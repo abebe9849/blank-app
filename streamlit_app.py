@@ -246,19 +246,20 @@ with col_1:
             # テンプレート番号を空白に初期化
             #if st.session_state.index >= len(image_files):
             #    st.session_state.index = 0
+            with open(annotations_file, 'r', encoding='utf-8') as f:
+                annotations_data = f.read()
+            st.download_button(
+                label="アノテーションファイルをダウンロード",
+                data=annotations_data,
+                file_name="annotations.json",
+                mime="application/json"
+            )
             if len(image_files) == 1:
                 print("last")
                 #download annotation json
                 st.session_state.index = 0
                 # アノテーションJSONファイルをダウンロード
-                with open(annotations_file, 'r', encoding='utf-8') as f:
-                    annotations_data = f.read()
-                st.download_button(
-                    label="アノテーションファイルをダウンロード",
-                    data=annotations_data,
-                    file_name="annotations.json",
-                    mime="application/json"
-                )
+
 
                 
                 st.success("すべての画像にアノテーションが完了しました")
