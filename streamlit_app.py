@@ -87,13 +87,9 @@ def zenkaku_to_hankaku(text):
 st.set_page_config(layout="wide")
 form = st.form("checkboxes", clear_on_submit = True)
 
-# レイアウト設定
-if st.session_state.sidebar_closed:
-    max_width = 400  # 800 * 0.9
-    max_height = 400  # 600 * 0.9
-else:
-    max_width = 500
-    max_height = 500
+
+max_width = 500
+max_height = 500
 # 画像の表示
 def resize_image(image_path, max_width=450, max_height=450):
     image = Image.open(image_path)
