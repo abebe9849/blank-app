@@ -2,7 +2,7 @@ import streamlit as st
 import os,cv2
 import json,glob
 import pandas as pd
-
+## ref: https://jsn.or.jp/journal/document/46_8/sigematu.pdf 
 #df = pd.read_csv("/home/user/ABE/kidneyDINO/final_pas.csv")
 from PIL import Image
 
