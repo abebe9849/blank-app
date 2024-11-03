@@ -118,12 +118,14 @@ with form:
         #cols = st.columns(len(checkbox_labels))  # チェックボックスの数だけ列を作成
         checkbox_states_b = []
         rows = [checkbox_labels[:4], checkbox_labels[4:]]
-        for row in rows:
+        for cnt,row in enumerate(rows):
             cols = st.columns(4)
+            cnt*=4
 
-            for i, label in enumerate(row):
-                with cols[i]:  # 各列にチェックボックスを配置
-                    checkbox_state = st.checkbox(label, key=label,help=templates["b"][str(i)])
+            for i_, label in enumerate(row):
+
+                with cols[i_]:  # 各列にチェックボックスを配置
+                    checkbox_state = st.checkbox(label, key=label,help=templates["b"][str(i_+cnt)])
                     checkbox_states_b.append(checkbox_state)
 
 
