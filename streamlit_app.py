@@ -190,7 +190,7 @@ with form:
         caption_text= f"収縮期血圧:{bp},eGFR:{egfr},尿蛋白:{ubp},血尿:{hep}"
         st.image(resized_image, use_column_width=True)
         st.markdown(f"<div style='text-align: center; font-size: 24px; font-weight: bold;'>{caption_text}</div>", unsafe_allow_html=True)
-submit = form.form_submit_button("テンプレートを適用")
+submit = form.form_submit_button("テンプレートを適用 チェックボックス初期化")
 
 # 自由記述欄の初期値設定
 if 'annotation_text' not in st.session_state:
@@ -236,7 +236,7 @@ with col_1:
 
         
         
-        if st.button("完了"):           
+        if st.button("完了 次の画像へ"):           
             annotations[current_image_file] = annotation_text
             with open(annotations_file, 'w', encoding='utf-8') as f:
                 json.dump(annotations, f, ensure_ascii=False, indent=4)
@@ -276,7 +276,7 @@ with col_1:
             
     with col_button2:
         
-        if st.button("クリア"):
+        if st.button("テキストをクリア"):
             st.session_state['annotation_text'] = ""
             st.rerun()
 
