@@ -33,7 +33,7 @@ A simple Streamlit app template for you to modify!
 作業中に所見文の作業結果をダウンロードしたい場合、"完了"の下の"ダウンロード"をクリックする。
 
 
-不明点や不具合があれば masamasa20001002@gmail.comに　【糸球体画像に対するキャプションつけ】
+不明点や不具合があれば [こちらまで](https://mail.google.com/mail/?view=cm&fs=1&to=masamasa20001002@gmail.com&su=【糸球体画像に対するキャプションつけ】)
 
-https://mail.google.com/mail/?view=cm&fs=1&to=masamasa20001002@gmail.com&su=糸球体画像に対するキャプションつけ】
+
 
