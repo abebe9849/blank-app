@@ -29,8 +29,8 @@ image_files = [f for f in image_files if f not in annotations.keys()]
 # テンプレート辞書
 templates = {
     "a": {
-        "0": "管内性細胞増生が一部に見られます",
-        "1": "管内性細胞増生が全節性に見られます",
+        "0": "管内性細胞増殖が見られます",
+        "1": "管内性細胞増殖が見られます",
     },
     "b": {
         "0": "線維性半月体が見られます",
@@ -105,7 +105,7 @@ with form:
         
 
         
-        checkbox_labels = ["管内細胞増殖:一部","管内細胞増殖:全節"]  # 5個のチェックボックスのラベル
+        checkbox_labels = ["管内細胞増殖"]  # 5個のチェックボックスのラベル
         cols = st.columns(len(checkbox_labels))  # チェックボックスの数だけ列を作成
         checkbox_states_a = []
 
@@ -125,7 +125,7 @@ with form:
                 checkbox_states_m.append(checkbox_state)
 
         st.write("======基底膜======")
-        checkbox_labels = ["肥厚","スパイク","断裂","沈着","二重化","係蹄壊死"]  # 5個のチェックボックスのラベル
+        checkbox_labels = ["肥厚","スパイク","断裂","沈着","二重化","壊死"]  # 5個のチェックボックスのラベル
         cols = st.columns(len(checkbox_labels))  # チェックボックスの数だけ列を作成
         checkbox_states_c = []
 
@@ -142,9 +142,7 @@ with form:
             with cols[i]:  # 各列にチェックボックスを配置
                 checkbox_state = st.checkbox(label, key=label,help=templates["d"][str(i)])
                 checkbox_states_d.append(checkbox_state)
-        checkbox_labels_e = ["係蹄腔虚脱","係蹄腔拡張"]  # 5個のチェックボックスのラベル
-        cols = st.columns(len(checkbox_labels_e))  # チェックボックスの数だけ列を作成
-        checkbox_states_e = []
+
         st.write("======管外病変======")
         checkbox_labels = ["線維性半月体","繊維細胞性半月体","細胞性半月体","小半月体","癒着","尿腔内出血 浸出","上皮細胞の増殖","カプスラードロップ"]  # 5個のチェックボックスのラベル
         #cols = st.columns(len(checkbox_labels))  # チェックボックスの数だけ列を作成
@@ -159,7 +157,9 @@ with form:
                 with cols[i_]:  # 各列にチェックボックスを配置
                     checkbox_state = st.checkbox(label, key=label,help=templates["b"][str(i_+cnt)])
                     checkbox_states_b.append(checkbox_state)
-
+        checkbox_labels_e = ["係蹄腔虚脱","係蹄腔拡張"]  # 5個のチェックボックスのラベル
+        cols = st.columns(len(checkbox_labels_e))  # チェックボックスの数だけ列を作成
+        checkbox_states_e = []
         for i, label in enumerate(checkbox_labels_e):
             with cols[i]:  # 各列にチェックボックスを配置
                 checkbox_state = st.checkbox(label, key=label,help=templates["e"][str(i)])
