@@ -114,22 +114,6 @@ with form:
                 checkbox_state = st.checkbox(label, key=label,help=templates["a"][str(i)])
                 checkbox_states_a.append(checkbox_state)
 
-        st.write("======管外病変======")
-        checkbox_labels = ["線維性半月体","繊維細胞性半月体","細胞性半月体","小半月体","癒着","尿腔内出血 浸出","上皮細胞の増殖","カプスラードロップ"]  # 5個のチェックボックスのラベル
-        #cols = st.columns(len(checkbox_labels))  # チェックボックスの数だけ列を作成
-        checkbox_states_b = []
-        rows = [checkbox_labels[:4], checkbox_labels[4:]]
-        for cnt,row in enumerate(rows):
-            cols = st.columns(4)
-            cnt*=4
-
-            for i_, label in enumerate(row):
-
-                with cols[i_]:  # 各列にチェックボックスを配置
-                    checkbox_state = st.checkbox(label, key=label,help=templates["b"][str(i_+cnt)])
-                    checkbox_states_b.append(checkbox_state)
-
-
         st.write("======メサンギウム======")
         checkbox_labels = ["軽度 細胞増殖","中程度 細胞増殖","重度 細胞増殖","基質の増加","融解"]  # 5個のチェックボックスのラベル
         cols = st.columns(len(checkbox_labels))  # チェックボックスの数だけ列を作成
@@ -161,6 +145,20 @@ with form:
         checkbox_labels_e = ["係蹄腔虚脱","係蹄腔拡張"]  # 5個のチェックボックスのラベル
         cols = st.columns(len(checkbox_labels_e))  # チェックボックスの数だけ列を作成
         checkbox_states_e = []
+        st.write("======管外病変======")
+        checkbox_labels = ["線維性半月体","繊維細胞性半月体","細胞性半月体","小半月体","癒着","尿腔内出血 浸出","上皮細胞の増殖","カプスラードロップ"]  # 5個のチェックボックスのラベル
+        #cols = st.columns(len(checkbox_labels))  # チェックボックスの数だけ列を作成
+        checkbox_states_b = []
+        rows = [checkbox_labels[:4], checkbox_labels[4:]]
+        for cnt,row in enumerate(rows):
+            cols = st.columns(4)
+            cnt*=4
+
+            for i_, label in enumerate(row):
+
+                with cols[i_]:  # 各列にチェックボックスを配置
+                    checkbox_state = st.checkbox(label, key=label,help=templates["b"][str(i_+cnt)])
+                    checkbox_states_b.append(checkbox_state)
 
         for i, label in enumerate(checkbox_labels_e):
             with cols[i]:  # 各列にチェックボックスを配置
