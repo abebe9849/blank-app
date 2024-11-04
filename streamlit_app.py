@@ -57,6 +57,9 @@ templates = {
         "3": "メサンギウム基質の増加が見られます",
         "4": "メサンギウムの融解が見られます",
         "5": "",
+        "10": "メサンギウム基質に4~5個のメサンギウム細胞が見られる",
+        "11": "メサンギウム基質に6~7個のメサンギウム細胞が見られる",
+        "12": "メサンギウム基質に8個以上のメサンギウム細胞が見られる",
     },
     "d": {
         "0": "全節性硬化が見られます",
@@ -121,6 +124,8 @@ with form:
 
         for i, label in enumerate(checkbox_labels):
             with cols[i]:  # 各列にチェックボックスを配置
+                if i in [0,1,2]:
+                    i+=10
                 checkbox_state = st.checkbox(label, key=label,help=templates["m"][str(i)])
                 checkbox_states_m.append(checkbox_state)
 
