@@ -87,6 +87,7 @@ def zenkaku_to_hankaku(text):
 st.set_page_config(layout="wide")
 form = st.form("checkboxes", clear_on_submit = True)
 
+hep_dict = {0:"-",0.5:"±",1.0:"+",2.0:"++",3.0:"+++"}
 
 max_width = 500
 max_height = 500
@@ -181,15 +182,16 @@ with form:
 
         #st.markdown('<div class="image-container">', unsafe_allow_html=True)
         
-        target__ = "DMN" #str(tmp["target"].values[0])
-        print(target__)
-        bp = 90 #tmp["収縮期血圧"].values[0]
+        target__ = "糖尿病性腎症" #str(tmp["target"].values[0])
+        dbp = 90
+        sbp = 140 #tmp["収縮期血圧"].values[0]
         egfr = 60#int(tmp["egfr"].values[0])
         ubp = 3.5#tmp["uprot"].values[0]
         hep = 0.5 #tmp["血尿"].values[0]
-        caption_text= f"収縮期血圧:{bp},eGFR:{egfr},尿蛋白:{ubp},血尿:{hep}"
+        hep = hep_dict(hep)
+        caption_text= f"診断:{target__} ,血圧:{sbp}/{dbp}mmHg,eGFR:{egfr},尿蛋白:{ubp}g/gCr,血尿:{hep}"
         st.image(resized_image, use_column_width=True)
-        st.markdown(f"<div style='text-align: center; font-size: 24px; font-weight: bold;'>{caption_text}</div>", unsafe_allow_html=True)
+        st.markdown(f"<div style='text-align: center; font-size: 20px; font-weight: bold;'>{caption_text}</div>", unsafe_allow_html=True)
 submit = form.form_submit_button("テンプレートを適用 チェックボックス初期化")
 
 # 自由記述欄の初期値設定
@@ -283,14 +285,15 @@ with col_1:
             st.rerun()
 
 with col_2:
-    target__ = "DMN" #str(tmp["target"].values[0])
-    bp = 90 #tmp["収縮期血圧"].values[0]
+    target__ = "糖尿病性腎症" #str(tmp["target"].values[0])
+    dbp = 90
+    sbp = 140 #tmp["収縮期血圧"].values[0]
     egfr = 60#int(tmp["egfr"].values[0])
     ubp = 3.5#tmp["uprot"].values[0]
     hep = 0.5 #tmp["血尿"].values[0]
-    caption_text= f"収縮期血圧:{bp},eGFR:{egfr},尿蛋白:{ubp},血尿:{hep}"
+    caption_text= f"診断:{target__} ,血圧:{sbp}/{dbp}mmHg,eGFR:{egfr},尿蛋白:{ubp}g/gCr,血尿:{hep}"
     st.image(resized_image, use_column_width=True)
-    st.markdown(f"<div style='text-align: center; font-size: 24px; font-weight: bold;'>{caption_text}</div>", unsafe_allow_html=True)
+    st.markdown(f"<div style='text-align: center; font-size: 20px; font-weight: bold;'>{caption_text}</div>", unsafe_allow_html=True)
 
 
 
