@@ -30,13 +30,13 @@ image_files = [f for f in image_files if f not in annotations.keys()]
 templates = {
     "a": {
         "0": "管内性細胞増殖が見られます",
-        "1": "管内性細胞増殖が見られます",
+        "1": "糸球体が虚脱しています",
     },
     "b": {
         "0": "線維性半月体が見られます",
         "1": "繊維細胞性半月体が見られます",
         "2": "細胞性半月体が見られます",
-        "3": "小半月体が見られます",
+        "3": "小半月体が見られます",## これはなしで何時〜何時の病変なのか記載する？
         "4": "係蹄の癒着が見られます",
         "5": "尿腔内出血",## 浸出が見られます",
         "6": "上皮細胞の増殖が見られます",
@@ -108,7 +108,7 @@ with form:
         
 
         
-        checkbox_labels = ["管内細胞増殖"]  # 5個のチェックボックスのラベル
+        checkbox_labels = ["管内細胞増殖","虚脱／虚血糸球体"]  # 5個のチェックボックスのラベル
         cols = st.columns(len(checkbox_labels))  # チェックボックスの数だけ列を作成
         checkbox_states_a = []
 
@@ -138,7 +138,7 @@ with form:
             with cols[i]:  # 各列にチェックボックスを配置
                 checkbox_state = st.checkbox(label, key=label,help=templates["c"][str(i)])
                 checkbox_states_c.append(checkbox_state)
-        st.write("======その他======")
+        st.write("======硬化======")
         checkbox_labels = ["全節性硬化","結節性硬化","分節性硬化"]  # 5個のチェックボックスのラベル
         cols = st.columns(len(checkbox_labels))  # チェックボックスの数だけ列を作成
         checkbox_states_d = []
@@ -162,6 +162,7 @@ with form:
                 with cols[i_]:  # 各列にチェックボックスを配置
                     checkbox_state = st.checkbox(label, key=label,help=templates["b"][str(i_+cnt)])
                     checkbox_states_b.append(checkbox_state)
+        st.write("============")
         checkbox_labels_e = ["係蹄腔虚脱","係蹄腔拡張"]  # 5個のチェックボックスのラベル
         cols = st.columns(len(checkbox_labels_e))  # チェックボックスの数だけ列を作成
         checkbox_states_e = []
