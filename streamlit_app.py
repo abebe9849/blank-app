@@ -263,14 +263,15 @@ with col_1:
             if len(image_files) != 1:
 
                 st.rerun()
-        with open(annotations_file, 'r', encoding='utf-8') as f:
-            annotations_data_ = f.read()
-        st.download_button(
-            label="アノテーションファイルをダウンロード",
-            data=annotations_data_,
-            file_name="annotations.json",
-            mime="application/json"
-        )  
+        if not st.session_state.all_imgs==len(image_files):
+            with open(annotations_file, 'r', encoding='utf-8') as f:
+                annotations_data_ = f.read()
+            st.download_button(
+                label="アノテーションファイルをダウンロード",
+                data=annotations_data_,
+                file_name="annotations.json",
+                mime="application/json"
+            )  
             
             
             
