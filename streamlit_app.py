@@ -118,6 +118,8 @@ with form:
 
         for i, label in enumerate(checkbox_labels):
             with cols[i]:  # 各列にチェックボックスを配置
+                if i in [0,1,2]:
+                    i+=10
                 checkbox_state = st.checkbox(label, key=label,help=templates["a"][str(i)])
                 checkbox_states_a.append(checkbox_state)
 
