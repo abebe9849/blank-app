@@ -41,11 +41,13 @@ templates = {
         "1": "繊維細胞性半月体が見られます",
         "11":"細胞と細胞外基質の組み合わせ（細胞が50%以下で基質が90%以下）により覆われたボーマン嚢円周の 5%より大きい病巣をさす。しばしばボーマン嚢の破壊を伴う。虚血性廃退性糸球体は除く",
         "2": "細胞性半月体が見られます",
-        "12": "ボーマン嚢円周の 10 %以上が 90 %以上の細胞外基質の成分によって覆われている病巣す",
+        "12": "ボーマン嚢円周の 10 %以上が 90 %以上の細胞外基質の成分によって覆われている病巣",
         "3": "小半月体が見られます",#定義を細かく記載
         "13":"糸球体円周の 25 %以下を巻き込む管外性病巣 ",
         "4": "係蹄の癒着が時方向に見られます",##N時方向に
+        "14": "癒着が見られる方向を追記　係蹄同士あるいは係蹄とボウマン囊との癒着",
         "5": "偽尿細管形成が見られます",
+        "15": "管外病変であって尿腔の開存のあるもの",
         "6": "カプスラードロップが見られます",
         "16":"ボ-マン嚢の一部がエオジン好性の小滴と変化しているもの",
     },
@@ -68,8 +70,8 @@ templates = {
         "1": "メサンギウム細胞の中程度増殖を認めます",
         "2": "メサンギウム細胞の高度増殖を認めます",
         "3": "メサンギウム基質の増加が見られます",
-        "4": "メサンギウムの融解が見られます",
-        "5": "",
+        "4": "メサンギウムの融解が疑われます",
+        "14": "基質の染色性が失われる PAS染色ではっきりしない場合未記載でも可",
         "10": "メサンギウム基質に4~5個のメサンギウム細胞が見られる",
         "11": "メサンギウム基質に6~7個のメサンギウム細胞が見られる",
         "12": "メサンギウム基質に8個以上のメサンギウム細胞が見られる",
@@ -90,6 +92,7 @@ templates = {
         "0": "糸球体周囲の血管新生が見られます",
         "1": "細動脈の硝子様変化が見られます",
         "2": "硝子様血栓が見られます",
+        "12":"血腔内に凝集した免疫結合物",
     },
 }
 
@@ -142,7 +145,7 @@ with form:
 
         for i, label in enumerate(checkbox_labels):
             with cols[i]:  # 各列にチェックボックスを配置
-                if i in [0,1,2]:
+                if i in [0,1,2,4]:
                     i+=10
                 checkbox_state = st.checkbox(label, key=label,help=templates["m"][str(i)])
                 checkbox_states_m.append(checkbox_state)
@@ -201,6 +204,8 @@ with form:
 
         for i, label in enumerate(checkbox_labels_f):
             with cols[i]:  # 各列にチェックボックスを配置
+                if i in [2]:
+                    i+=10
                 checkbox_state = st.checkbox(label, key=label,help=templates["f"][str(i)])
                 checkbox_states_f.append(checkbox_state)
 
@@ -272,6 +277,8 @@ with col_1:
                 st.error("エラー: アノテーションに「が時」が含まれています。修正してください。")
                 st.stop()
             else:
+                if annotation_text=="":
+                    annotation_text="光顕では異常所見を認めません"
                 annotations[current_image_file] = annotation_text
                 with open(annotations_file, 'w', encoding='utf-8') as f:
                     json.dump(annotations, f, ensure_ascii=False, indent=4)                
