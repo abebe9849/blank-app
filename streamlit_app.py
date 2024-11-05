@@ -254,10 +254,14 @@ with col_1:
 
         
 
-        if st.button("完了 次の画像へ"):           
-            annotations[current_image_file] = annotation_text
-            with open(annotations_file, 'w', encoding='utf-8') as f:
-                json.dump(annotations, f, ensure_ascii=False, indent=4)
+        if st.button("完了 次の画像へ"):  
+            ### この段階で　annotationに”が時”　がannotationsに部分文字列として含まれる場合にエラーとする
+            if "が時" in annotation_text:
+                st.error("エラー: アノテーションに「が時」が含まれています。修正してください。")
+            else:
+                annotations[current_image_file] = annotation_text
+                with open(annotations_file, 'w', encoding='utf-8') as f:
+                    json.dump(annotations, f, ensure_ascii=False, indent=4)                
 
             # 次の画像に進む
             #st.session_state.index += 1
