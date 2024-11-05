@@ -258,6 +258,7 @@ with col_1:
             ### この段階で　annotationに”が時”　がannotationsに部分文字列として含まれる場合にエラーとする
             if "が時" in annotation_text:
                 st.error("エラー: アノテーションに「が時」が含まれています。修正してください。")
+                st.stop()
             else:
                 annotations[current_image_file] = annotation_text
                 with open(annotations_file, 'w', encoding='utf-8') as f:
