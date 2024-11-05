@@ -67,7 +67,8 @@ templates = {
         "0": "全節性硬化が見られます",
         "2": "分節性の硬化が時方向に見られます",##N時方向に... txt
         "1": "結節性硬化が疑われます",
-        "11": "硬化が見られる場所を'N時方向'で記載　糸球体毛細血管係蹄の一部（すべての係蹄を侵さない）に硬化が認められる。",
+        "1": "PAS染色ではっきりしない場合未記載で可",
+        "12": "硬化が見られる場所を'N時方向'で記載　糸球体毛細血管係蹄の一部（すべての係蹄を侵さない）に硬化が認められる。",
         
     },
     "e": {
@@ -151,6 +152,8 @@ with form:
 
         for i, label in enumerate(checkbox_labels):
             with cols[i]:  # 各列にチェックボックスを配置
+                if i in [1,2]:
+                    i+=10
                 checkbox_state = st.checkbox(label, key=label,help=templates["d"][str(i)])
                 checkbox_states_d.append(checkbox_state)
 
