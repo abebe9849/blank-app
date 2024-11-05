@@ -37,6 +37,7 @@ templates = {
     },
     "b": {
         "0": "線維性半月体が見られます",##説明文をクリック音で表示に全部かえる
+        "10":"3層以上の管外性細胞増殖があり,その成分として細胞が50%以上ある病巣",
         "1": "繊維細胞性半月体が見られます",
         "2": "細胞性半月体が見られます",
         "3": "小半月体が見られます",#定義を細かく記載
@@ -167,9 +168,11 @@ with form:
             cnt*=4
 
             for i_, label in enumerate(row):
-
+                tmp_i = i_+cnt
+                if tmp_i in [0]:
+                    tmp_i+=10
                 with cols[i_]:  # 各列にチェックボックスを配置
-                    checkbox_state = st.checkbox(label, key=label,help=templates["b"][str(i_+cnt)])
+                    checkbox_state = st.checkbox(label, key=label,help=templates["b"][str(tmp_i)])
                     checkbox_states_b.append(checkbox_state)
         st.write("============")
         checkbox_labels_e = ["係蹄腔虚脱","係蹄腔拡張"]  # 5個のチェックボックスのラベル
