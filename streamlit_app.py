@@ -5,6 +5,17 @@ import pandas as pd
 ## ref: https://jsn.or.jp/journal/document/46_8/sigematu.pdf 
 #df = pd.read_csv("/home/user/ABE/kidneyDINO/final_pas.csv")
 from PIL import Image
+"""
+・臨床診断
+・病歴（時間軸を明確に、感染の有無も）
+・家族歴
+・既往歴（糖尿病の有無、弁膜症）
+・腎機能、尿所見
+・身長、体重
+・出生に問題ないか
+・喫煙歴
+
+"""
 
 
 img_path = "./data/images"
