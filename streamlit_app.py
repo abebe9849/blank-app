@@ -98,11 +98,13 @@ templates = {
         "0": "係蹄腔の虚脱が見られます",
         "1": "係蹄腔の拡張が見られます",
     },
-    "f": {#"血管新生","硝子様変化","硝子様血栓"]
+    "f": {#"血管新生","硝子様変化","血管極 硝子様血栓","細動脈 硝子様血栓"]
         "0": "糸球体周囲の血管新生が見られます",
         "1": "細動脈の硝子様変化が見られます",
-        "2": "硝子様血栓が見られます",
+        "2": "血管極に硝子様血栓が見られます",
         "12":"血腔内に凝集した免疫結合物",
+        "3": "細動脈に硝子様血栓が見られます",
+        "13":"血腔内に凝集した免疫結合物",
     },
 }
 
@@ -208,13 +210,13 @@ with form:
                 checkbox_state = st.checkbox(label, key=label,help=templates["e"][str(i)])
                 checkbox_states_e.append(checkbox_state)
 
-        checkbox_labels_f = ["血管新生","硝子様変化","硝子様血栓"]  # 5個のチェックボックスのラベル
+        checkbox_labels_f = ["血管新生","硝子様変化","血管極 硝子様血栓","細動脈 硝子様血栓"]  # 5個のチェックボックスのラベル
         cols = st.columns(len(checkbox_labels_f))  # チェックボックスの数だけ列を作成
         checkbox_states_f = []
 
         for i, label in enumerate(checkbox_labels_f):
             with cols[i]:  # 各列にチェックボックスを配置
-                if i in [2]:
+                if i in [2,3]:
                     i+=10
                 checkbox_state = st.checkbox(label, key=label,help=templates["f"][str(i)])
                 checkbox_states_f.append(checkbox_state)
