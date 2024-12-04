@@ -45,8 +45,7 @@ templates = {
     "a": {
         "0": "管内性細胞増殖が見られます",
         "10":"糸球体毛細血管係蹄の管腔内の細胞数が増加し，管腔の狭小化を引き起こしている細胞増殖",
-        "1": "糸球体が虚脱しています",
-        "11": "糸球体毛細血管は虚脱し，ボーマン嚢の肥厚やボウマン腔の線維化を伴う場合がある",
+
         
     },
     "b": {
@@ -101,6 +100,8 @@ templates = {
     "e": {
         "0": "係蹄腔の虚脱が見られます",##"1": "糸球体が虚脱しています"　や　硬化 と重複？　
         "1": "係蹄腔の拡張が見られます",
+        "2": "糸球体が虚脱しています",
+        "12": "糸球体毛細血管は虚脱し，ボーマン嚢の肥厚やボウマン腔の線維化を伴う場合がある",
     },
     "f": {#"血管新生","硝子様変化","血管極 硝子様血栓","細動脈 硝子様血栓"]
         "0": "糸球体周囲の血管新生が見られます",
@@ -143,7 +144,7 @@ with form:
         
 
         
-        checkbox_labels = ["管内細胞増殖","虚脱／虚血糸球体"]  # 5個のチェックボックスのラベル
+        checkbox_labels = ["管内細胞増殖"]  # 5個のチェックボックスのラベル
         cols = st.columns(len(checkbox_labels))  # チェックボックスの数だけ列を作成
         checkbox_states_a = []
 
@@ -206,11 +207,13 @@ with form:
                     checkbox_state = st.checkbox(label, key=label,help=templates["b"][str(tmp_i)])
                     checkbox_states_b.append(checkbox_state)
         st.write("============")
-        checkbox_labels_e = ["係蹄腔虚脱","係蹄腔拡張"]  # 5個のチェックボックスのラベル
+        checkbox_labels_e = ["係蹄腔虚脱","係蹄腔拡張","虚脱／虚血糸球体"]  # 5個のチェックボックスのラベル
         cols = st.columns(len(checkbox_labels_e))  # チェックボックスの数だけ列を作成
         checkbox_states_e = []
         for i, label in enumerate(checkbox_labels_e):
             with cols[i]:  # 各列にチェックボックスを配置
+                if tmp_i in [2]:
+                    tmp_i+=10
                 checkbox_state = st.checkbox(label, key=label,help=templates["e"][str(i)])
                 checkbox_states_e.append(checkbox_state)
 
