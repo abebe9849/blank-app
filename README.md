@@ -11,14 +11,16 @@ A simple Streamlit app template for you to modify!
    ```
    git clone https://github.com/abebe9849/blank-app.git
    cd blank-app
-   
+   conda create -n ano python=3.12 -y
+   conda activate ano
    pip install -r requirements.txt
    ```
 
 2. Run the app
 
    ```
-   streamlit run streamlit_app.py
+   streamlit run streamlit_app.py #demo
+   bash annotate.sh #mian data
    ```
 
 ### 使い方
