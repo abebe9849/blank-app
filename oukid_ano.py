@@ -26,7 +26,7 @@ image_files = glob.glob(f"{img_path}/*")  # 画像ファイルのリスト
 import pandas as pd
 
 folds = pd.read_csv("./data/oof_exp__4cls_dino.csv")
-test = pd.read_csv("./data/sub_exp__4cls_dino.csv")
+df = pd.read_csv("./data/sub_exp__4cls_dino.csv")
 
 
 missing = pd.read_csv(f"{}/kidney_missing.csv")
