@@ -28,7 +28,40 @@ import pandas as pd
 folds = pd.read_csv("./data/oof_exp__4cls_dino.csv")
 test = pd.read_csv("./data/sub_exp__4cls_dino.csv")
 
-df = pd.concat([folds,test],axis=0)
+
+missing = pd.read_csv(f"{}/kidney_missing.csv")
+def get_missing(tmp_df):
+    cols = ["BMI","DBP","DM","age","alb","egfr","uprot","収縮期血圧","血尿"]
+    df_tmp = tmp_df[tmp_df["WSI"].isin(missing["label"].values)]#.reset_index(drop=True)
+    df_full = tmp_df[tmp_df["WSI"].isin(missing["label"].values)==False]#.reset_index(drop=True)
+    #male,age,SBP,DBP,BMI,egfr,alb,upcr,OB_teisei,dm,DM1,DM
+    bmi = dict(zip(missing["label"],missing["BMI"])) 
+    df_tmp["BMI"] = df_tmp["WSI"].map(bmi)
+    dbp = dict(zip(missing["label"],missing["DBP"]))
+    df_tmp["DBP"] = df_tmp["WSI"].map(dbp)
+    dm = dict(zip(missing["label"],missing["DM"]))
+    df_tmp["DM"] = df_tmp["WSI"].map(dm)
+    age = dict(zip(missing["label"],missing["age"]))
+    df_tmp["age"] = df_tmp["WSI"].map(age)
+    alb = dict(zip(missing["label"],missing["alb"]))
+    df_tmp["alb"] = df_tmp["WSI"].map(alb)
+    egfr = dict(zip(missing["label"],missing["egfr"]))
+    df_tmp["egfr"] = df_tmp["WSI"].map(egfr)
+    uprot = dict(zip(missing["label"],missing["upcr"]))
+    df_tmp["uprot"] = df_tmp["WSI"].map(uprot)
+    sbp = dict(zip(missing["label"],missing["SBP"]))
+    df_tmp["収縮期血圧"] = df_tmp["WSI"].map(sbp)
+    ketu = dict(zip(missing["label"],missing["OB_teisei"]))
+    df_tmp["血尿"] = df_tmp["WSI"].map(ketu)
+    tmp_df = pd.concat([df_tmp,df_full],axis=0)#.reset_index(drop=True)
+
+    return tmp_df
+
+
+df = pd.concat([df,folds],axis=0).reset_index(drop=True)
+
+df = get_missing(df)
+
 # 現在の画像インデックス
 if 'index' not in st.session_state:
     st.session_state.index = 0
