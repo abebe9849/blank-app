@@ -242,7 +242,7 @@ with form:
         hep = 0.5 #tmp["血尿"].values[0]
         hep = hep_dict[hep]
         caption_text= f"診断:{target__} ,血圧:{sbp}/{dbp}mmHg,eGFR:{egfr},尿蛋白:{ubp}g/gCr,血尿:{hep}"
-        st.image(resized_image, use_column_width=True)
+        st.image(resized_image, use_container_width=True)
         st.markdown(f"<div style='text-align: center; font-size: 12px; font-weight: bold;'>{caption_text}</div>", unsafe_allow_html=True)
 submit = form.form_submit_button("テンプレートを適用 チェックボックス初期化")
 
@@ -353,7 +353,7 @@ with col_2:
     hep = 0.5 #tmp["血尿"].values[0]
     hep = hep_dict[hep]
     caption_text= f"診断:{target__} ,血圧:{sbp}/{dbp}mmHg,eGFR:{egfr},尿蛋白:{ubp}g/gCr,血尿:{hep}"
-    st.image(resized_image, use_column_width=True)
+    st.image(resized_image, use_container_width=True)
     st.markdown(f"<div style='text-align: center; font-size: 12px; font-weight: bold;'>{caption_text}</div>", unsafe_allow_html=True)
 
 
