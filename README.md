@@ -10,6 +10,7 @@ A simple Streamlit app template for you to modify!
 
    ```
    git clone https://github.com/abebe9849/blank-app.git
+   cd blank-app
    
    pip install -r requirements.txt
    ```
